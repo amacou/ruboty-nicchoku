@@ -3,7 +3,7 @@ module Ruboty
     class Nicchoku < Base
       NAMESPACE = "nicchoku"
       on(
-        /\A私が日直です/,
+        /(私|僕)が日直です|日直は(僕|私)です/,
         description: "言った人が日直になります",
         name: "stand_up",
         all: true
@@ -13,10 +13,11 @@ module Ruboty
         /(?<someone>.+)が日直です/,
         description: "だれかを日直に登録します",
         name: "recommend",
+        all: true
       )
 
       on(
-        /.*(日直さん)/,
+        /.*日直(さん|の方|の人)/,
         description: "<日直さん>にメッセージを振ります",
         name: "resolve",
         all: true
