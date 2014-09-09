@@ -10,7 +10,7 @@ module Ruboty
       )
 
       on(
-        /(?<someone>.+)が日直です/,
+        /(?<someone>[^私][^僕]+)が日直です/,
         description: "だれかを日直に登録します",
         name: "recommend",
         all: true
