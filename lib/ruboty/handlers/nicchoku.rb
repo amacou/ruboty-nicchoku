@@ -50,7 +50,7 @@ module Ruboty
       end
 
       def recommend(message)
-        register(message[:someone].gsub(/[(#{robot.name})-_: ]/,''))
+        register(message[:someone].gsub(/^(#{robot.name})[ -_:]/,''))
         infomation(message)
       end
 
