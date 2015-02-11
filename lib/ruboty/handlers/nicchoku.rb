@@ -3,15 +3,29 @@ module Ruboty
     class Nicchoku < Base
       NAMESPACE = "nicchoku"
       MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|ちん|チン|朕|じぶん|自分|"
+
       on(
-        /(#{MINE_REGEXP})が日直です|日直は(#{MINE_REGEXP})です/,
+        /(#{MINE_REGEXP})が日直です/,
         description: "言った人が日直になります",
         name: "stand_up",
         all: true
       )
 
       on(
-        /(#{MINE_REGEXP})が日直です|日直は(#{MINE_REGEXP})です/,
+        /日直は(#{MINE_REGEXP})です/,
+        description: "言った人が日直になります",
+        name: "stand_up",
+        all: true
+      )
+
+      on(
+        /(#{MINE_REGEXP})が日直です/,
+        description: "言った人が日直になります",
+        name: "stand_up"
+      )
+
+      on(
+        /日直は(#{MINE_REGEXP})です/,
         description: "言った人が日直になります",
         name: "stand_up"
       )
