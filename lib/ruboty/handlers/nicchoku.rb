@@ -45,7 +45,7 @@ module Ruboty
       )
 
       def stand_up(message)
-        register(message.original[:from])
+        register(message.original[:from].split('/').last)
         infomation(message)
       end
 
@@ -59,6 +59,8 @@ module Ruboty
       end
 
       def resolve(message)
+        return nil if message.original[:from].split('/').last == robot.name
+
         if registered
           message.reply("#{registered}: #{message.body}", type: :privmsg)
         else
