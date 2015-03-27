@@ -3,6 +3,10 @@ module Ruboty
     class Nicchoku < Base
       NAMESPACE = "nicchoku"
       MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|じぶん|自分"
+      on(/日直チェック|check nicchoku/,
+         description: '日直が登録されていなければ呼びかけます',
+         name: 'check'
+        )
 
       on(
         /(#{MINE_REGEXP})が日直です/,
@@ -44,6 +48,12 @@ module Ruboty
         all: true
       )
 
+      def check(message)
+        if registered.nil?
+          message.reply(ENV['RUBOTY_NICCHOKU_CHECK_PHRASE'] || '今日の日直さんはどなたですか？')
+        end
+      end
+
       def stand_up(message)
         register(message.original[:from_name] || message.original[:from])
         infomation(message)
@@ -69,6 +79,7 @@ module Ruboty
       end
 
       private
+
       def register(someone)
         robot.brain.data[NAMESPACE] = {name: someone, date: Date.today}
       end
