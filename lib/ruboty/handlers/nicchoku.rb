@@ -2,40 +2,41 @@ module Ruboty
   module Handlers
     class Nicchoku < Base
       NAMESPACE = "nicchoku"
-      MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|じぶん|自分"
+      MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|じぶん|自分|おいどん|わし"
+      LOCALE_SUFFIX = "です|でごわす|じゃけぇ|やき"
       on(/日直チェック|check nicchoku/,
          description: '日直が登録されていなければ呼びかけます',
          name: 'check'
         )
 
       on(
-        /(#{MINE_REGEXP})が日直です/,
+        /(#{MINE_REGEXP})が日直(#{LOCALE_SUFFIX})/,
         description: "言った人が日直になります",
         name: "stand_up",
         all: true
       )
 
       on(
-        /日直は(#{MINE_REGEXP})です/,
+        /日直は(#{MINE_REGEXP})(#{LOCALE_SUFFIX})/,
         description: "言った人が日直になります",
         name: "stand_up",
         all: true
       )
 
       on(
-        /(#{MINE_REGEXP})が日直です/,
+        /(#{MINE_REGEXP})が日直(#{LOCALE_SUFFIX})/,
         description: "言った人が日直になります",
         name: "stand_up"
       )
 
       on(
-        /日直は(#{MINE_REGEXP})です/,
+        /日直は(#{MINE_REGEXP})(#{LOCALE_SUFFIX})/,
         description: "言った人が日直になります",
         name: "stand_up"
       )
 
       on(
-        /(?<someone>[^#{MINE_REGEXP}]+)が日直です/,
+        /(?<someone>[^#{MINE_REGEXP}]+)が日直(#{LOCALE_SUFFIX})/,
         description: "だれかを日直に登録します",
         name: "recommend",
         all: true
