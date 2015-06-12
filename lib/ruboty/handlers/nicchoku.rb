@@ -2,7 +2,7 @@ module Ruboty
   module Handlers
     class Nicchoku < Base
       NAMESPACE = "nicchoku"
-      MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|じぶん|自分|おいどん|わし"
+      MINE_REGEXP = "わたく?し|ワタク?シ|あたし|アタシ|私|ボク|ぼく|僕|オレ|おれ|俺|じぶん|自分|おいどん|わし|(わ|お)い|(ワ|オ)イ"
       LOCALE_SUFFIX = "です|でごわす|じゃけぇ|やき"
       on(/日直チェック|check nicchoku/,
          description: '日直が登録されていなければ呼びかけます',
